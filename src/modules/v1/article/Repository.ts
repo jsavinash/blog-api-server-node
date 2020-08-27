@@ -1,5 +1,4 @@
 //external dependencies
-import * as express from "express";
 import mongoose from "mongoose";
 
 //internal dependencies

@@ -1,4 +1,3 @@
-import * as express from "express";
 //internal dependencies
 import { ArticleRepository } from "./Repository";
 import {
