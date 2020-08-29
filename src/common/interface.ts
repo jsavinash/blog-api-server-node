@@ -1,4 +1,3 @@
-import * as commonConstants from "../config/constants";
 
 export interface IParamsError {
   field: string;

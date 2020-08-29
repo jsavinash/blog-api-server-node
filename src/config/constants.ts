@@ -1,5 +1,5 @@
 /**
- * Version.
+ * API version.
  */
 export const VERSION = {
   V1: "v1",
@@ -15,13 +15,17 @@ export const Path = {
 
 /**
  * Method type.
- */ export const REQUEST_METHODS = {
+ */
+export const REQUEST_METHODS = {
   GET: "GET",
   POST: "POST",
   PUT: "PUT",
   PATCH: "PATCH",
 };
 
+/**
+ * Request params.
+ */
 export enum REQUEST_PARAMS {
   PATH_PARAMS = "pathParams",
   BODY_PARAMS = "bodyParams",

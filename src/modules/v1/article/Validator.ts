@@ -1,7 +1,11 @@
+//internal dependencies
 import * as commonConstants from "../../../config/constants";
 import { ERROR_MESSAGE } from "../../../config/errorMessage";
 import * as paramsValidation from "../../../common/paramsValidation";
 
+/**
+ * Validation rule for route parameters.
+ */
 export const articleRequestParamsValidator = {
   [commonConstants.Path.ARTICLE_WITH_PATH_PARAMS]: {
     [commonConstants.REQUEST_METHODS.GET]: {

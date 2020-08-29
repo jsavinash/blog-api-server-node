@@ -9,6 +9,7 @@ import path from "path";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import bluebird from "bluebird";
+import cors from "cors";
 import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
 import { ArticleRoutes } from "./modules/v1/article/Route";
 const MongoStore = mongo(session);
@@ -40,7 +41,8 @@ mongoose
 app.set("port", process.env.PORT || 3000);
 app.use(morgan("combined"));
 app.use(compression());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   session({
@@ -61,6 +63,7 @@ app.use(
   express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })
 );
 
+//Article route
 ArticleRoutes.map(app);
 
 export default app;

@@ -1,5 +1,5 @@
 //external dependencies
-import * as express from "express";
+import { Application } from "express";
 
 //internal dependencies
 import * as commonConstants from "../../../config/constants";
@@ -9,24 +9,32 @@ import { ArticleService } from "./Service";
 import { ArticleController } from "./Controller";
 import { articleValidator } from "./Middleware";
 
+/**
+ * Route class for article.
+ */
 export class ArticleRoutes {
-  static map(app: express.Application): void {
+  static map(app: Application): void {
     const articleController = new ArticleController(
       new ArticleService(new ArticleRepository(ArticleModel))
     );
     app.get(
       commonConstants.Path.ARTICLE_WITH_PATH_PARAMS,
-      articleValidator(app),
+      articleValidator(),
       articleController.getArticle()
+    );
+    app.get(
+      commonConstants.Path.ARTICLE_WITH_ID,
+      articleValidator(),
+      articleController.getArticleById()
     );
     app.put(
       commonConstants.Path.ARTICLE,
-      articleValidator(app),
+      articleValidator(),
       articleController.addArticle()
     );
     app.patch(
       commonConstants.Path.ARTICLE_WITH_ID,
-      articleValidator(app),
+      articleValidator(),
       articleController.updateArticle()
     );
   }

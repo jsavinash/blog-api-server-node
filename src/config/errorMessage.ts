@@ -1,3 +1,6 @@
+/**
+ * Method based error message.
+ */
 export const ERROR_MESSAGE = {
   GENERAL: {
     FIELD_DOES_NOT_EXIT: "Field Doesn't exist",

@@ -1,41 +1,67 @@
-export interface IArticle {
+/**
+ * Article item interface.
+ */
+export interface IArticleItem {
   _id?: string;
+  id?: number;
   title?: string;
   image?: string;
   description?: string;
-  publishDate?: Date; 
+  publishDate?: Date;
 }
 
-export interface IGetRequestParams {}
+/**
+ * Article interface.
+ */
+export interface IArticle {
+  articles: IArticleItem[];
+  count: number;
+}
 
+/**
+ * Get article method response interface.
+ */
 export interface IGetResponeParams {
-    data: {
-    value: IArticle[];
+  data: {
+    value: IArticle;
   };
 }
 
-export interface IPutRequestParams {}
+/**
+ * Get article by id method response interface.
+ */
+export interface IGetByIdResponeParams {
+  data: {
+    value: IArticleItem;
+  };
+}
 
+/**
+ * Put article method response interface.
+ */
 export interface IPutResponeParams {
   data: {
     value: {
-      id: string
+      id: string;
     };
   };
 }
 
-export interface IPatchRequestParams {}
-
+/**
+ * Patch article by id method response interface.
+ */
 export interface IPatchResponeParams {
   data: {
     value: {
-      id: string
+      id: string;
     };
   };
 }
 
+/**
+ * Pagination interface.
+ */
 export interface IPagination {
-    page: string;
-    limit: string;
-  
+  page: string;
+  limit: string;
 }

@@ -8,11 +8,19 @@ import {
   IGetResponeParams,
   IPutResponeParams,
   IPatchResponeParams,
-  IArticle,
+  IArticleItem,
+  IGetByIdResponeParams,
 } from "./Interface";
 
+/**
+ * Controller class for article.
+ */
 export class ArticleController {
   constructor(protected articleService: ArticleService) {}
+
+  /**
+   * Get all articles.
+   */
   getArticle() {
     return async (req: Request, res: Response) => {
       const { limit, page } = req.params;
@@ -26,12 +34,31 @@ export class ArticleController {
       res.status(200).json(response);
     };
   }
+
+  /**
+   * Get article by id.
+   */
+  getArticleById() {
+    return async (req: Request, res: Response) => {
+      const { id } = req.params;
+      const response: IGetByIdResponeParams = await this.articleService.findById(
+        id
+      );
+      res.status(200).json(response);
+    };
+  }
+
+  /**
+   * Add article.
+   */
   addArticle() {
     return async (req: Request, res: Response) => {
-      const { title, description } = req.body;
-      const newArticle: IArticle = {
+      const { title, description, image, publishDate } = req.body;
+      const newArticle: IArticleItem = {
         title,
         description,
+        image,
+        publishDate,
       };
       const response: IPutResponeParams = await this.articleService.addArticle(
         newArticle
@@ -39,13 +66,19 @@ export class ArticleController {
       res.status(200).json(response);
     };
   }
+
+  /**
+   * Update article.
+   */
   updateArticle() {
     return async (req: Request, res: Response) => {
       const { id } = req.params;
-      const { title, description } = req.body;
-      const updateArticle: IArticle = {
+      const { title, description, image, publishDate } = req.body;
+      const updateArticle: IArticleItem = {
         title,
         description,
+        image,
+        publishDate,
       };
       const response: IPatchResponeParams = await this.articleService.updateArticle(
         id,
